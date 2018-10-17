@@ -2358,7 +2358,52 @@ img.tag-reference-wiki-image {
     margin: 10px 5px 15px 20px;
 }
 
+/* Route Stops Editor
+------------------------------------------------------- */
 
+.route-stop-list {
+    padding-top: 10px;
+}
+li.route-stop-row {
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.route-stop-icon-wrap {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.route-stop-icon {
+    width: 9px;
+    height: 9px;
+    background: white;
+    border: #666 2px solid;
+    border-radius: 50%;
+    position: relative;
+}
+.route-stop-line {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    background: #666;
+    width: 5px;
+}
+.route-stop-list li:first-child .route-stop-line,
+.route-stop-list li:last-child .route-stop-line {
+    height: 50%;
+}
+.route-stop-list li:first-child .route-stop-line {
+    top: 50%;
+}
+.route-stop-name {
+    margin-left: 15px;
+    font-weight: bold;
+    line-height: 2em;
+}
 /* Raw Member / Membership Editor
 ------------------------------------------------------- */
 .raw-member-editor .member-list li:first-child,
@@ -4797,5 +4842,3 @@ li.hide + li.version .badge .tooltip .tooltip-arrow {
     width: 100px;
     color: #7092ff;
 }
-
-

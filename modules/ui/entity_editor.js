@@ -15,6 +15,7 @@ import { actionChangeTags } from '../actions';
 import { modeBrowse } from '../modes';
 import { svgIcon } from '../svg';
 import { uiPresetIcon } from './preset_icon';
+import { uiRouteStopsEditor } from './route_stops_editor';
 import { uiRawMemberEditor } from './raw_member_editor';
 import { uiRawMembershipEditor } from './raw_membership_editor';
 import { uiRawTagEditor } from './raw_tag_editor';
@@ -107,6 +108,10 @@ export function uiEntityEditor(context) {
 
         enter
             .append('div')
+            .attr('class', 'inspector-border route-stops-editor inspector-inner');
+
+        enter
+            .append('div')
             .attr('class', 'inspector-border raw-member-editor inspector-inner');
 
         enter
@@ -169,6 +174,17 @@ export function uiEntityEditor(context) {
                 );
         } else {
             body.select('.raw-member-editor')
+                .style('display', 'none');
+        }
+
+        if (entity.type === 'relation' && entity.tags.type === 'route') {
+            body.select('.route-stops-editor')
+                .style('display', 'block')
+                .call(uiRouteStopsEditor(context)
+                    .entityID(_entityID)
+                );
+        } else {
+            body.select('.route-stops-editor')
                 .style('display', 'none');
         }
 

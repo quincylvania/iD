@@ -151,6 +151,22 @@ export function coreContext() {
         }
     };
 
+    context.loadEntities = function(entityIDs, callback) {
+        var cid;
+        function done(err, result) {
+            if (connection.getConnectionId() !== cid) {
+                if (callback) callback({ message: 'Connection Switched', status: -1 });
+                return;
+            }
+            if (!err) history.merge(result.data, result.extent);
+            if (callback) callback(err, result);
+        }
+        if (connection) {
+            cid = connection.getConnectionId();
+            connection.loadMultiple(entityIDs, done);
+        }
+    };
+
     context.zoomToEntity = function(entityID, zoomTo) {
         if (zoomTo !== false) {
             this.loadEntity(entityID, function(err, result) {
